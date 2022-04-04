@@ -1,0 +1,85 @@
+m255
+K3
+13
+cModel Technology
+Z0 dC:\altera\OR2\simulation\qsim
+vOR_2
+Z1 I:5ClYGi5na84TnUG6b;e;0
+Z2 VKaMin6[oZVBF^Jh8]UF`f2
+Z3 dG:\AUEB\8th semester\Computer Architecture\Assignments\Comp-Arch-Projects\Assignment 1\OR2\simulation\qsim
+Z4 w1649086784
+Z5 8OR_2.vo
+Z6 FOR_2.vo
+L0 31
+Z7 OV;L;10.1d;51
+r1
+31
+Z8 !s90 -work|work|OR_2.vo|
+Z9 o-work work -O0
+Z10 n@o@r_2
+!i10b 1
+Z11 !s100 =NU6GNaiWl4O>Jd0=AMU20
+!s85 0
+Z12 !s108 1649086784.992000
+Z13 !s107 OR_2.vo|
+!s101 -O0
+vOR_2_vlg_check_tst
+!i10b 1
+Z14 !s100 Qmf?>5M^zlJJ8iEcc2>mS1
+Z15 IoCO:MDRk6MXL275?B?UWE1
+Z16 VUNKz^;c;DMLOP@KCO@io22
+R3
+Z17 w1649086783
+Z18 8OR_2.vt
+Z19 FOR_2.vt
+L0 59
+R7
+r1
+!s85 0
+31
+Z20 !s108 1649086785.084000
+Z21 !s107 OR_2.vt|
+Z22 !s90 -work|work|OR_2.vt|
+!s101 -O0
+R9
+Z23 n@o@r_2_vlg_check_tst
+vOR_2_vlg_sample_tst
+!i10b 1
+Z24 !s100 D6i:jk1k=M]LOcgA`e4Lf0
+Z25 ID=<VR1[z^d[Ng;TTgMh^P2
+Z26 VU2XIO:[HGUi7SgHTO_7@53
+R3
+R17
+R18
+R19
+L0 29
+R7
+r1
+!s85 0
+31
+R20
+R21
+R22
+!s101 -O0
+R9
+Z27 n@o@r_2_vlg_sample_tst
+vOR_2_vlg_vec_tst
+!i10b 1
+Z28 !s100 AM2P2c1?[IH0OBi:fdIc40
+Z29 I;I;k4CEcK96UnX783UZ>13
+Z30 VHb;W5HS=604fdOPSJ@9Li1
+R3
+R17
+R18
+R19
+Z31 L0 154
+R7
+r1
+!s85 0
+31
+R20
+R21
+R22
+!s101 -O0
+R9
+Z32 n@o@r_2_vlg_vec_tst

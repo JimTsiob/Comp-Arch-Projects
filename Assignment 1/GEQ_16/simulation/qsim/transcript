@@ -1,0 +1,12 @@
+# do GEQ_16.do 
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module GEQ_16
+# 
+# Top level modules:
+# 	GEQ_16
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module GEQ_16_vlg_sample_tst
+# -- Compiling module GEQ_16_vlg_check_tst
+# ** Error: GEQ_16.vt(58): near ",": syntax error, unexpected ','
+# ** Error: c:/altera/13.0sp1/modelsim_ase/win32aloem/vlog failed.
+# Executing ONERROR command at macro ./GEQ_16.do line 4

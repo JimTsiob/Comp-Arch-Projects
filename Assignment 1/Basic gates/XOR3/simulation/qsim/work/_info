@@ -1,0 +1,85 @@
+m255
+K3
+13
+cModel Technology
+Z0 dG:\AUEB\8th semester\Computer Architecture\Assignments\Comp-Arch-Projects\Assignment 1\XOR3\simulation\qsim
+vXOR_3
+Z1 IzN7Xg9a;iM^QBiL45cjGO3
+Z2 V^4<CX]92a:0OOHzAeL9kD3
+Z3 dG:\AUEB\8th semester\Computer Architecture\Assignments\Comp-Arch-Projects\Assignment 1\XOR3\simulation\qsim
+Z4 w1649088106
+Z5 8XOR_3.vo
+Z6 FXOR_3.vo
+L0 31
+Z7 OV;L;10.1d;51
+r1
+31
+Z8 !s90 -work|work|XOR_3.vo|
+Z9 o-work work -O0
+Z10 n@x@o@r_3
+!i10b 1
+Z11 !s100 E:7g^4_FF^Hf2:3o<UfH<2
+!s85 0
+Z12 !s108 1649088107.260000
+Z13 !s107 XOR_3.vo|
+!s101 -O0
+vXOR_3_vlg_check_tst
+!i10b 1
+Z14 !s100 hE;0AdFfALInX9k`@kUOH1
+Z15 IRhodJ7eY29VoPP0NQi?YH0
+Z16 V4jHfa;@_F[ZKTM4DieB212
+R3
+Z17 w1649088105
+Z18 8XOR_3.vt
+Z19 FXOR_3.vt
+L0 61
+R7
+r1
+!s85 0
+31
+Z20 !s108 1649088107.447000
+Z21 !s107 XOR_3.vt|
+Z22 !s90 -work|work|XOR_3.vt|
+!s101 -O0
+R9
+Z23 n@x@o@r_3_vlg_check_tst
+vXOR_3_vlg_sample_tst
+!i10b 1
+Z24 !s100 PQf1ILNNCKEX:`O>P63ki1
+Z25 I]KTPZlDa2i^ETN8I5C;hn3
+Z26 V=MH[GJV[boQC_MHQi8_T:0
+R3
+R17
+R18
+R19
+L0 29
+R7
+r1
+!s85 0
+31
+R20
+R21
+R22
+!s101 -O0
+R9
+Z27 n@x@o@r_3_vlg_sample_tst
+vXOR_3_vlg_vec_tst
+!i10b 1
+Z28 !s100 m63`CO<KE_zghobRO_kUV2
+Z29 I[bEA[7PeoYl`OB;4EmTiR3
+Z30 VEad>^>W8IU8zi<f:44@AD2
+R3
+R17
+R18
+R19
+Z31 L0 156
+R7
+r1
+!s85 0
+31
+R20
+R21
+R22
+!s101 -O0
+R9
+Z32 n@x@o@r_3_vlg_vec_tst

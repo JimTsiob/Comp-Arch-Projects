@@ -1,0 +1,15 @@
+vendor_name = ModelSim
+source_file = 1, G:/AUEB/8th semester/Computer Architecture/Assignments/Comp-Arch-Projects/Assignment 1/OR2/OR_2.vhd
+source_file = 1, G:/AUEB/8th semester/Computer Architecture/Assignments/Comp-Arch-Projects/Assignment 1/OR3/OR_3.vhd
+source_file = 1, G:/AUEB/8th semester/Computer Architecture/Assignments/Comp-Arch-Projects/Assignment 1/OR3/Waveform.vwf
+source_file = 1, G:/AUEB/8th semester/Computer Architecture/Assignments/Comp-Arch-Projects/Assignment 1/OR3/db/OR_3.cbx.xml
+source_file = 1, c:/altera/13.0sp1/quartus/libraries/vhdl/ieee/prmtvs_b.vhd
+source_file = 1, c:/altera/13.0sp1/quartus/libraries/vhdl/ieee/prmtvs_p.vhd
+source_file = 1, c:/altera/13.0sp1/quartus/libraries/vhdl/ieee/timing_b.vhd
+source_file = 1, c:/altera/13.0sp1/quartus/libraries/vhdl/ieee/timing_p.vhd
+design_name = OR_3
+instance = comp, \IN3~I , IN3, OR_3, 1
+instance = comp, \IN1~I , IN1, OR_3, 1
+instance = comp, \IN2~I , IN2, OR_3, 1
+instance = comp, \V1|OUT1~0 , V1|OUT1~0, OR_3, 1
+instance = comp, \OUT1~I , OUT1, OR_3, 1

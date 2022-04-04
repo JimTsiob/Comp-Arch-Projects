@@ -1,0 +1,85 @@
+m255
+K3
+13
+cModel Technology
+Z0 dC:\altera\NOT1\simulation\qsim
+vNOT1
+Z1 I9[2GcES@9gljANAPJ4K3o2
+Z2 Vh9KlJC^1Qb3AFeX3_7_Z22
+Z3 dG:\AUEB\8th semester\Computer Architecture\Assignments\Comp-Arch-Projects\Assignment 1\NOT1\simulation\qsim
+Z4 w1649086399
+Z5 8NOT1.vo
+Z6 FNOT1.vo
+L0 31
+Z7 OV;L;10.1d;51
+r1
+31
+Z8 !s90 -work|work|NOT1.vo|
+Z9 o-work work -O0
+Z10 n@n@o@t1
+!i10b 1
+Z11 !s100 dX@<?5VHMbT1a871Bb]lT0
+!s85 0
+Z12 !s108 1649086400.186000
+Z13 !s107 NOT1.vo|
+!s101 -O0
+vNOT1_vlg_check_tst
+!i10b 1
+Z14 !s100 5>Sdf1OMl>g`>H1S2c?El1
+Z15 IC^^7`5?nbaCC8P;k^_mGe2
+Z16 VOReJU`jG8F7BGcOWPe73:3
+R3
+R4
+Z17 8NOT1.vt
+Z18 FNOT1.vt
+L0 57
+R7
+r1
+!s85 0
+31
+Z19 !s108 1649086400.280000
+Z20 !s107 NOT1.vt|
+Z21 !s90 -work|work|NOT1.vt|
+!s101 -O0
+R9
+Z22 n@n@o@t1_vlg_check_tst
+vNOT1_vlg_sample_tst
+!i10b 1
+Z23 !s100 MmO@HP=DW^FESinJW^F:N2
+Z24 ISaENQTa[`MGIW8Okf@JB82
+Z25 VZ9Qh9gdSHLEKKJBlZg7UM2
+R3
+R4
+R17
+R18
+L0 29
+R7
+r1
+!s85 0
+31
+R19
+R20
+R21
+!s101 -O0
+R9
+Z26 n@n@o@t1_vlg_sample_tst
+vNOT1_vlg_vec_tst
+!i10b 1
+Z27 !s100 LSneFaHmZ>SAZ`ESDE`E73
+Z28 IBZ9HiU[Q;6JX1FDeLg@ik2
+Z29 V:Xe<H1^7gVMkS`ZLoTlEQ0
+R3
+R4
+R17
+R18
+Z30 L0 152
+R7
+r1
+!s85 0
+31
+R19
+R20
+R21
+!s101 -O0
+R9
+Z31 n@n@o@t1_vlg_vec_tst

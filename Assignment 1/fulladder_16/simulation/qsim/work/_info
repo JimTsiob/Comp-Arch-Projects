@@ -1,0 +1,85 @@
+m255
+K3
+13
+cModel Technology
+Z0 dG:\AUEB\8th semester\Computer Architecture\Assignments\Comp-Arch-Projects\Assignment 1\fulladder_16\simulation\qsim
+vFULLADDER_16
+Z1 IVHeDEEWAa3Ug?@FFeKLdc0
+Z2 V@6L:EF1Z0<W0]>ZK0CEF80
+Z3 dG:\AUEB\8th semester\Computer Architecture\Assignments\Comp-Arch-Projects\Assignment 1\fulladder_16\simulation\qsim
+Z4 w1649092140
+Z5 8FULLADDER_16.vo
+Z6 FFULLADDER_16.vo
+L0 31
+Z7 OV;L;10.1d;51
+r1
+31
+Z8 !s90 -work|work|FULLADDER_16.vo|
+Z9 o-work work -O0
+Z10 n@f@u@l@l@a@d@d@e@r_16
+!i10b 1
+Z11 !s100 ^UQO^@n6eh1PFkWYRnf]T2
+!s85 0
+Z12 !s108 1649092141.019000
+Z13 !s107 FULLADDER_16.vo|
+!s101 -O0
+vFULLADDER_16_vlg_check_tst
+!i10b 1
+Z14 !s100 U5k:@Cno]P[aZ624SGbek0
+Z15 I`L_c0Pb]hOO23=[9ENGR]2
+Z16 VgFY62@MGSj3kai7RkL6V03
+R3
+Z17 w1649092139
+Z18 8FULLADDER_16.vt
+Z19 FFULLADDER_16.vt
+L0 61
+R7
+r1
+!s85 0
+31
+Z20 !s108 1649092141.211000
+Z21 !s107 FULLADDER_16.vt|
+Z22 !s90 -work|work|FULLADDER_16.vt|
+!s101 -O0
+R9
+Z23 n@f@u@l@l@a@d@d@e@r_16_vlg_check_tst
+vFULLADDER_16_vlg_sample_tst
+!i10b 1
+Z24 !s100 mPaRb10eUC>kcbM@n5_eY3
+Z25 I?lPcfN1:JdfNJSHjUKMfZ2
+Z26 VBmoiE0ZijH=7cP[I@ghFc3
+R3
+R17
+R18
+R19
+L0 29
+R7
+r1
+!s85 0
+31
+R20
+R21
+R22
+!s101 -O0
+R9
+Z27 n@f@u@l@l@a@d@d@e@r_16_vlg_sample_tst
+vFULLADDER_16_vlg_vec_tst
+!i10b 1
+Z28 !s100 oX2PXSaX>3=T22;:?<DAz1
+Z29 IFEd8CT771X<jHoNAT;5Em3
+Z30 V<2Ub>`k<Z:k5FeA3g[AiF2
+R3
+R17
+R18
+R19
+Z31 L0 479
+R7
+r1
+!s85 0
+31
+R20
+R21
+R22
+!s101 -O0
+R9
+Z32 n@f@u@l@l@a@d@d@e@r_16_vlg_vec_tst

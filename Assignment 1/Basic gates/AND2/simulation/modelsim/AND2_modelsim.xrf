@@ -1,0 +1,13 @@
+vendor_name = ModelSim
+source_file = 1, G:/AUEB/8th semester/Computer Architecture/Assignments/Comp-Arch-Projects/Assignment 1/AND2/AND2.vhd
+source_file = 1, G:/AUEB/8th semester/Computer Architecture/Assignments/Comp-Arch-Projects/Assignment 1/AND2/Waveform.vwf
+source_file = 1, G:/AUEB/8th semester/Computer Architecture/Assignments/Comp-Arch-Projects/Assignment 1/AND2/db/AND2.cbx.xml
+source_file = 1, c:/altera/13.0sp1/quartus/libraries/vhdl/ieee/prmtvs_b.vhd
+source_file = 1, c:/altera/13.0sp1/quartus/libraries/vhdl/ieee/prmtvs_p.vhd
+source_file = 1, c:/altera/13.0sp1/quartus/libraries/vhdl/ieee/timing_b.vhd
+source_file = 1, c:/altera/13.0sp1/quartus/libraries/vhdl/ieee/timing_p.vhd
+design_name = AND_2
+instance = comp, \IN1~I , IN1, AND_2, 1
+instance = comp, \IN2~I , IN2, AND_2, 1
+instance = comp, \OUT1~0 , OUT1~0, AND_2, 1
+instance = comp, \OUT1~I , OUT1, AND_2, 1

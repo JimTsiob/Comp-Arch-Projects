@@ -1,0 +1,40 @@
+|GEQ_16
+in1[0] => ~NO_FANOUT~
+in1[1] => ~NO_FANOUT~
+in1[2] => ~NO_FANOUT~
+in1[3] => ~NO_FANOUT~
+in1[4] => ~NO_FANOUT~
+in1[5] => ~NO_FANOUT~
+in1[6] => ~NO_FANOUT~
+in1[7] => ~NO_FANOUT~
+in1[8] => ~NO_FANOUT~
+in1[9] => ~NO_FANOUT~
+in1[10] => ~NO_FANOUT~
+in1[11] => ~NO_FANOUT~
+in1[12] => ~NO_FANOUT~
+in1[13] => ~NO_FANOUT~
+in1[14] => ~NO_FANOUT~
+in1[15] => NOT1:V0.A
+output[0] <= NOT1:V0.Q
+output[1] <= <GND>
+output[2] <= <GND>
+output[3] <= <GND>
+output[4] <= <GND>
+output[5] <= <GND>
+output[6] <= <GND>
+output[7] <= <GND>
+output[8] <= <GND>
+output[9] <= <GND>
+output[10] <= <GND>
+output[11] <= <GND>
+output[12] <= <GND>
+output[13] <= <GND>
+output[14] <= <GND>
+output[15] <= <GND>
+
+
+|GEQ_16|NOT1:V0
+A => Q.DATAIN
+Q <= A.DB_MAX_OUTPUT_PORT_TYPE
+
+
