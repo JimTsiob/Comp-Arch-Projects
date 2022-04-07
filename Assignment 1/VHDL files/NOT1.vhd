@@ -1,3 +1,7 @@
+-- Dimitris Tsiompikas 3180223
+-- Antwnhs Detshs 3190054
+-- Petros Tsotsi 3180193
+
 LIBRARY IEEE;
 USE IEEE.STD_LOGIC_1164.ALL;
 
