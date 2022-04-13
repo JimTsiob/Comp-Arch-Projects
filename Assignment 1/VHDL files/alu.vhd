@@ -14,12 +14,13 @@ PORT(
 		input1,input2 : in std_logic_vector(15 DOWNTO 0);
 		operation : in std_logic_vector(2 DOWNTO 0);
 		output : out std_logic_vector(15 DOWNTO 0);
-		cout : out std_logic
+		addcout : out std_logic;
+		subcout : out std_logic
 );
 
 END ALU_16_BIT;
 
-ARCHITECTURE logic_structural OF ALu_16_BIT IS
+ARCHITECTURE logic_structural OF ALU_16_BIT IS
 
 
 -- include full adder
@@ -31,6 +32,18 @@ PORT( in1,in2 : in std_logic_vector(15 DOWNTO 0);
 		cout , overflow : out std_logic
 );
 END COMPONENT;
+
+-- include full subtractor
+
+COMPONENT FULL_SUB_16 IS
+PORT(
+		A,B : in std_logic_vector(15 DOWNTO 0);
+		C : in std_logic;
+		diff : out std_LOGIC_VECTOR(15 DOWNTO 0);
+		bout : out std_logic
+);
+END COMPONENT;
+
 
 -- include and 16 bit
 
@@ -86,8 +99,8 @@ SIGNAL zero : std_logic := '0';
 SIGNAL add_result,sub_result,and_result,or_result,geq_result,not_result : std_logic_vector(15 DOWNTO 0);
 
 BEGIN
-	add : FULLADDER_16 port map (input1,input2,zero,add_result,cout);
-	-- sub : 
+	add : FULLADDER_16 port map (input1,input2,zero,add_result,addcout);
+	sub : FULL_SUB_16 port map (input1,input2,zero,sub_result,subcout);
 	and_op : AND_16 port map (input1,input2,and_result);
 	or_op : OR_16 port map (input1,input2,or_result);
 	geq_op : GEQ_16 port map (input1,geq_result);
@@ -95,13 +108,13 @@ BEGIN
 	
 	
 	mux : MUX8_1_16BIT port map (add_result,
-										  (others => zero), -- subtraction
+										  sub_result,
 										  and_result,
 										  or_result,
 										  geq_result,
 										  not_result,
-										  (others => zero),
-										  (others => zero),
+										  (others => zero), -- no operation provided
+										  (others => zero), -- no operation provided
 										  operation,
 										  output
 										  
