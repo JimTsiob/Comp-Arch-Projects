@@ -20,7 +20,7 @@ PORT(
 
 END ALU_16_BIT;
 
-ARCHITECTURE logic_structural OF ALU_16_BIT IS
+ARCHITECTURE logic_structural OF ALu_16_BIT IS
 
 
 -- include full adder
@@ -108,13 +108,13 @@ BEGIN
 	
 	
 	mux : MUX8_1_16BIT port map (add_result,
-										  sub_result,
+										  sub_result, -- subtraction
 										  and_result,
 										  or_result,
 										  geq_result,
 										  not_result,
-										  (others => zero), -- no operation provided
-										  (others => zero), -- no operation provided
+										  (others => zero),
+										  (others => zero),
 										  operation,
 										  output
 										  

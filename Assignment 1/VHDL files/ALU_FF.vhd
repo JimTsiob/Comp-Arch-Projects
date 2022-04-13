@@ -5,9 +5,15 @@
 LIBRARY IEEE;
 USE IEEE.std_logic_1164.all;
 
--- Parathrhsame oti to output tou teleytaiou Flip Flop kathysterei
--- ston ypologismo tou opote tha kathysterei kai ta ypoloipa kommatia
--- tou epexergasth.
+
+--Παρατηρώντας το simulation του τελικού κυκλώματος(ALU_FF_func) βλέπουμε μια καθυστέρηση 
+--ενός κύκλου μεταξύ του υπολογισμού του αποτελέσματος των inputs (από την ALU με βάση
+--το operation) και της προώθησης αυτού του αποτελέσματος στο output του τελικού Register.
+--Αυτό είναι αναμενόμενο να συμβεί και οφείλεται στον χρονισμό των Registers από ένα κοινό clock.
+--Συγκεκριμένα , την 1η φορά που το Clock θα μεταβεί από τιμή 1 σε 0 , τα inputs των αρχικών Registers
+--θα προωθηθούν στην ALU και θα προκύψει το αποτέλεσμα του operation στην έξοδο της ALU. Ωστόσο ο 3ος register
+--θα προωθήσει αυτό το αποτέλεσμα στην έξοδο στο επόμενο clock , όταν η ALU θα εκτελέσει την επόμενη πράξη.
+--Συνεπώς ο υπολογισμός της ALU καθυστερεί έναν κύκλο μέχρι να προωθηθεί στο output του τελικού Register
 
 
 ENTITY ALU_FF IS
