@@ -17,7 +17,7 @@ ARCHITECTURE Behavior OF REG_16B IS
 BEGIN
 	process(clock)
 	begin
-		if clock ' EVENT AND Clock = '0' THEN
+		if clock ' EVENT AND Clock = '1' THEN
 			IF ENABLE = '1' THEN
 				Output <= Input;
 			END IF;
