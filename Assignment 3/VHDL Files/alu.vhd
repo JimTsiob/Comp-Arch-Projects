@@ -8,19 +8,19 @@ USE ieee.std_logic_1164.all;
 USE IEEE.std_logic_signed.all;
 
 
-ENTITY ALU_16_BIT IS
+ENTITY ALU IS
 
 PORT(
 		input1,input2 : in std_logic_vector(15 DOWNTO 0);
-		operation : in std_logic_vector(2 DOWNTO 0);
+		operation : in std_logic_vector(3 DOWNTO 0);
 		output : out std_logic_vector(15 DOWNTO 0);
 		addcout : out std_logic;
 		subcout : out std_logic
 );
 
-END ALU_16_BIT;
+END ALU;
 
-ARCHITECTURE logic_structural OF ALu_16_BIT IS
+ARCHITECTURE logic_structural OF ALU IS
 
 
 -- include full adder
@@ -90,10 +90,15 @@ END COMPONENT;
 -- include 16 bit multiplexer 8 to 1
 
 COMPONENT MUX8_1_16BIT IS
-PORT (IN0,IN1,IN2,IN3,IN4,IN5,IN6,IN7 : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
-		SEL : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
+
+PORT (ADD_RES,SUB_RES,AND_RES,OR_RES,GEQ_RES,NOT_RES: IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+		SEL : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
 		OUT1 : OUT STD_LOGIC_VECTOR(15 DOWNTO 0));
-END COMPONENT;		
+		
+		
+END COMPONENT;
+
+	
 
 SIGNAL zero : std_logic := '0';
 SIGNAL add_result,sub_result,and_result,or_result,geq_result,not_result : std_logic_vector(15 DOWNTO 0);
@@ -113,8 +118,6 @@ BEGIN
 										  or_result,
 										  geq_result,
 										  not_result,
-										  (others => zero),
-										  (others => zero),
 										  operation,
 										  output
 										  
