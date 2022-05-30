@@ -31,7 +31,7 @@ ARCHITECTURE Behavioral of CPU IS
 
 
 
-------------------- COMPONENTS OF 3RD ASSIGNMENT
+------------------- COMPONENTS OF 3RD ASSIGNMENT------------------------------------
 
 			
 			
@@ -79,10 +79,10 @@ END COMPONENT;
 -------------------------------------------------
 COMPONENT CONTROL IS
 port(
-		opcode : in std_logic_vector(3 downto 0);
+		opcode : IN std_logic_vector(3 downto 0);
 		func : IN std_logic_vector(2 downto 0);
-		flush : in std_logic;
-		isMPFC, isJumpD, isReadDigit, isPrintDigit, isR, isLW, isSW, isBranch, isJR : out std_logic
+		flush : IN std_logic;
+		isMFPC, isJumpD, isReadDigit, isPrintDigit, isR, isLW, isSW, isBranch, isJR : out std_logic
 );
 END COMPONENT;
 -------------------------------------------------
@@ -156,7 +156,7 @@ PORT(
 		
 		clock, isEOR, wasJumpOut, isJump, isJR, isBranch, isR, isMFPC, isLW, isSW, isReadDigit, isPrintDigit : in std_logic;
 		ALUFunc : in std_logic_vector(3 DOWNTO 0);
-		R1reg, R2Reg, immediate16 : IN std_logic_vector(n-1 downto 0);
+		R1Reg, R2Reg, immediate16 : IN std_logic_vector(n-1 downto 0);
 		R1AD, R2AD : IN std_logic_vector(addressSize - 1 downto 0);
 		jumpShortAddr : IN std_logic_vector(11 downto 0);
 		-----------------------------------------------------------------
@@ -290,7 +290,9 @@ COMPONENT REG_FILE IS
 generic(n:integer:=16;
 		k:integer:=3;
 		regNum:integer:=8
-		);
+		
+);
+
 port (
 
 	Clock :in std_logic;
@@ -398,15 +400,17 @@ SIGNAL JRopcode : std_logic_vector(1 DOWNTO 0);
 
 
 
+-- TRAP UNIT SIGNAL OUTPUTS
+
+SIGNAL isEOR : std_logic;
+
+
+
+
 -- ALU_Control SIGNAL OUTPUTS
 
 SIGNAL ALUFunc : std_logic_vector(3 DOWNTO 0);		--RENAMED
 
-
-
--- TRAP UNIT SIGNAL OUTPUTS
-
-SIGNAL isEOR : std_logic;
 
 
 
@@ -418,7 +422,7 @@ SIGNAL addcout,subcout : std_logic;
 
 
 -- ALU INPUT SIGNALS (PROCESS OUTPUTS)
-SIGNAL ALUinput1, ALUinput2 : std_loGIC_VECTOR(15 downto 0);
+SIGNAL ALUinput1, ALUinput2 : std_LOGIC_VECTOR(15 downto 0);
 
 
 
@@ -449,13 +453,13 @@ SIGNAL outPC, outInstruction : STD_logic_vector(15 downto 0);
 
 -- REG_ID_EX SIGNAL OUTPUTS
 
---clock_idex signal ??
 
 SIGNAL isEOR_IDEX, wasJumpOut_IDEX, isJump_IDEX, isJR_IDEX, isBranch_IDEX, isR_IDEX, isMFPC_IDEX, isLW_IDEX, isSW_IDEX, isReadDigit_IDEX, isPrintDIgit_IDEX : std_logic;
 SIGNAL ALUFunc_IDEX : std_logic_vector(3 DOWNTO 0);
 SIGNAL R1Reg_IDEX, R2Reg_IDEX, immediate16_IDEX : std_logic_vector(15 downto 0);
 SIGNAL R1AD_IDEX, R2AD_IDEX : std_logic_vector(2 downto 0);
 SIGNAL jumpShortAddr_IDEX : std_logic_vector(11 downto 0);
+
 
 -- REG_ID_EX input signals for R1AD and R2AD.
 
@@ -467,7 +471,7 @@ SIGNAL R1AD,R2AD : std_loGIC_VECTOR(2 downto 0);
 -- (PrintDigit_EXMEM --> PrintEnable  , WriteEnable_EXMEM --> DataWriteFlag)
 
 SIGNAL isLW_EXMEM, isReadDigit_EXMEM: std_logic;   
-SIGNAL R2Reg_EXMEM , Result_EXMEM : std_logic_vector(15 downto 0);
+SIGNAL R2Reg_EXMEM, Result_EXMEM : std_logic_vector(15 downto 0);
 SIGNAL RegAD_EXMEM : std_logic_vector(2 downto 0);
 
 
@@ -497,72 +501,117 @@ SIGNAL PCReg_output : std_logic_vector(15 downto 0);
 BEGIN
 
 
-	-- Trap unit
+	-- TRAP UNIT
+	
+			--CHECKS THE OPCODE BITS AND IN CASE OF "1110"
+			--ENABLES THE isEOR SIGNAL 
+			--WHICH IS SENT TO CONTROLLER AND PC REGISTER
 
-	Trap : Trap_Unit port map (OutInstruction(15 downto 12), isEOR); 
+	Trap : Trap_Unit port map (outInstruction(15 downto 12), isEOR); 
 	
-	-- PC Register
+				
 	
-	PC_Register : REG_16B port map (JR_result, (isEOR NOR isEOR_IDEX), clock, PCReg_output); 
 	
-	-- Jump Address
+	-- JUMP ADDRESS
+	
+		--COMPUTES THE JUMP ADDRESS TARGET 
+		--IN CASE OF A JUMP INSTRUCTION
+		--AND SENDS THIS ADRESS TO JR SELECTOR
 	
 	jumpAD : jump_AD port map (jumpShortAddr_IDEX, outInstruction, jumpADOut); 
 	
+	
+	
 	-- JR Selector
+	
+		--BASED ON THE JR_OPCODE OUTPUT OF HAZARD UNIT 
+		--CHOOSES THE ADDRESS TO BE SENT TO PC
+		--BETWEEN THE JUMP, BRANCH OR NEXT ADDRESS
 	
 	JR : JR_SELECTOR port map (jumpADOut, immediate16_IDEX, outPC, JRopcode, JR_result); 
 	
+
 	
-	IFIDREG : REG_IF_ID port map (PCReg_output, instr, clock, '0', '1', outPC, outInstruction); -- IF ID Register 
+	-- PC Register
+	
+				-- TAKES AS INPUT THE OUTPUT OF JR_SELECTOR
+				-- NOR FUNCTION RESULT IS THE ENABLE SIGNAL OF PC_REG
+	
+	PC_Register : REG_16B port map (JR_result, (isEOR NOR isEOR_IDEX), clock, PCReg_output); 
+
+
+	
+	--HAZARD UNIT
+	
+			--DECIDES IF THE INSTRUCTION MUST BE FLUSHED, IF THE PREVIOUS ONE
+			--WAS A JUMP OR BRANCH INSTRUCTION
+			--ALSO SENDS THE JR OPCODE SIGNAL TO JR SELECTOR
+			--AND THUS DECIDES ABOUT THE NEXT INSTRUCTUION TO BE LOADED TO PC REGISTER
+	
+			-- AND EXPRESSION IS THE 'MustBranch' INPUT
+	
+	Hazard : HazardUnit port map (isJR, isJumpD, '0', (addcout AND isBranch_IDEX), flush, wasJumpOut, JRopcode);
 	
 	
-		
+	
 	
 	--FORWARDER
 	
+		--CHECKS IF THE 2 REGISTERS TO BE READ FROM THE REG_FILE 
+		--ARE WRITTEN FROM PREVIOUS INSTRUCTIONS 
+		--IT OUTPUS 2 SIGNALS FOR THESE 2 REGISTERS 
+		--WHICH ARE SENT TO THE ALU INPUT SELECTORS
 	
 	ForwardUnit : FORWARDER port map(R1AD_IDEX, R2AD_IDEX, RegAD_EXMEM, writeAD_WB, forwardS1, forwardS2); 
 	
+	
+	
 	-- SELECTORS
+	
+		--THESE 2 SELECTORS, ACCORDING TO THE FORWARDER SIGNALS
+		--SELECT THE 2 ALU INPUTS, FROM REG_FILE, MEMORY OR WRITE BACK
 	
 	Selector1 : SELECTOR port map(R1Reg_IDEX, MEM_WB_Out, writeData_WB, forwardS1, SelOut1); 
 	
 	Selector2 : SELECTOR port map(R2Reg_IDEX, MEM_WB_Out, writeData_WB, forwardS2, SelOut2); 
 	
 	
+	
+	
 	-- SIGN EXTENDER
+	
+		--EXTENDS THE IMMEDIATE FIELD TO 16 BITS
+		--WHICH IS NEEDED IN CASE OF I TYPE INSTRUCTION
 	
 	SignExtend : SIGN_EXTENDER port map (outInstruction(5 downto 0), immediate16); 
 	
 	
-	Hazard : HazardUnit port map (isJR, isJumpD, '0', (addcout AND isBranch_IDEX), flush, wasJumpOut, JRopcode);
 	
+	--CONTROLLER
+	
+		--BASED ON THE OPCODE AND FUNC FIELD BITS 
+		--AND ALSO THE FLUSH SIGNALS FROM TRAP UNIT AND HAZARD UNIT
+		--AND PRODUCES SIGNAL OUTPUTS THAT ARE SENT TO ID_EX REGISTER
 	
 	Controller: CONTROL port map (outInstruction(15 downto 12), outInstruction(2 downto 0), (flush OR isEOR_IDEX), isMFPC, isJumpD, isReadDigit, isPrintDigit, isR, isLW, isSW, isBranch, isJR);
 	
-	-- MEM_WB multiplexer
 	
-        MUX2_1_MEM_WB: process(isLW_EXMEM, isReadDigit_EXMEM)
-        begin
-            if (isLW_EXMEM = '1') then
-                MEM_WB_Out <= fromData;
-            elsif (isReadDigit_EXMEM = '1') then
-                MEM_WB_Out <= keyData;
-            else
-                MEM_WB_Out <= Result_EXMEM;
-            end if;
-        end process;
 	
-	MEMWBREG : REG_MEM_WB port map(MEM_WB_Out, RegAD_EXMEM, clock, writeData_WB, writeAD_WB); -- REG_MEM_WB register
 	
-	-- ALU Controller 
+	-- ALU CONTROLLER
+
+		--BASED ON OPCODE AND FUNC BITS OF THE INSTRUCTION
+		--CHOOSES THE FINAL FUNC CODE TO BE SENT THE ALU (VIA ID_EX REGISTER)
 	
 	ALUController : ALU_Control port map(outInstruction(15 downto 12), outInstruction(2 downto 0), ALUFunc); 
 	
 	
 	
-	-- ALU input 1 multiplexer
+	-- ALU INPUT 1 MULTIPLEXER
+	
+			-- CHOOSES BETWEEN THE SELECTOR 1 OUTPUT AND THE PC INSTRUCTION 
+			-- BASED ON THE isMFPC_IDEX SIGNAL FROM CONTROLLER AND ID_EX REG
+	
         MUX2_1_ALU_1: process(isMFPC_IDEX)
         begin
             if (isMFPC_IDEX = '1') then
@@ -574,7 +623,11 @@ BEGIN
 		  
 		  
 	
-	-- ALU input 2 multiplexer
+	-- ALU INPUT 2 MULTIPLEXER
+	
+			-- CHOOSES BETWEEN THE SELECTOR 2 OUTPUT AND THE immediate16_IDEX SIGNAL FROM SIGN EXTENDER
+			-- BASED ON THE ISR_IDEX SIGNAL (IF IS R-TYPE OR I-TYPE INSTRUCTION)
+	
         MUX2_1_ALU_2: process(isR_IDEX)
         begin
             if (isR_IDEX = '1') then
@@ -586,45 +639,119 @@ BEGIN
 		  
 		  
 	-- ALU
+	
+		--TAKES ITS 2 INPUTS BY THE PREVIOUS MUXES
+		--AND BASED ON THE ALU_FUNC SIGNAL FROM ALU CONTROLLER
+		--COMPUTES THE CORRESPONDING FUNCTION
+		
 		  
 	ALU_16 : ALU port map(ALUinput1, ALUinput2, ALUFunc_IDEX, ALUout, addcout, subcout);
 	
 	
-	-- Register ID_EX
+	
+	
+	-- IF_ID REGISTER 
+	
+	IFIDREG : REG_IF_ID port map (PCReg_output, instr, clock, '0', '1', outPC, outInstruction); 
+	
+	
+	
+	-- SELECTION OF THE R1AD ADDRESS (FIRST REGISTER TO READ FROM THE REG_FILE)
+	-- RS REGISTER
 	
 	R1AD <= outInstruction(8 downto 6);
 	
-	-- R2AD process
+	-- SELECTION OF THE R2AD ADDRESS (SECOND REGISTER TO READ FROM THE REG_FILE)
+	-- DIFFERENT FIELD BITS IN CASE OF R-TYPE OR I-TYPE FUNCTION
+	
 	
 		MUX2_1_R2 : process(isR)
 		begin
 			case isR is
 				when '0' =>
-					R2AD <= outInstruction(11 downto 9);
+					R2AD <= outInstruction(11 downto 9);  --IN CASE OF I-TYPE INSTRUCTION
 				when '1' =>
-					R2AD <= outInstruction(5 downto 3);
+					R2AD <= outInstruction(5 downto 3);	  --IN CASE OF R-TYPE INSTRUCTION
 				when OTHERS =>
-					R2AD <= outInstruction(11 downto 9); -- if command is not R type
+					R2AD <= outInstruction(11 downto 9); 
 			end case;
 		end process;	
-			
+		
+		
+	-- REGISTER FILE
+	
+		--TAKES R1AD AND R2AD INPUT ADDRESSES OF THE REGISTERS TO READ FROM
+		--AND OUTPUTS THEIR DATA TO R1Reg AND R2Reg
+		--AND WRITES THE writeData_WB DATA TO THE writeAD_WB REGISTER 
+	
+	RegisterFile : REG_FILE port map(clock2, writeData_WB, writeAD_WB, R1AD, R2AD, R1Reg, R2Reg, outall);	
+	
+		
+		
+		
+	-- REGISTER ID_EX
+	
+		--TAKES INPUTS FROM CONTROLLER, ALU CONTROLLER, REGISTER FILE, 
+		--SIGN EXTENDER AND IF_ID REG
+		--AND FORWARDS THEM TO ALU AND EX_MEM REG 
+	
+												--INPUTS
 	IDEXREG : REG_ID_EX port map(clock, isEOR, wasJumpOut, isJumpD, isJR,  isBranch, isR, isMFPC, isLW, isSW, isReadDigit, isPrintDigit, ALUFunc, R1reg, R2Reg, immediate16, R1AD, R2AD , outInstruction(11 downto 0),
-	isEOR_IDEX, wasJumpOut_IDEX, isJump_IDEX, isJR_IDEX, isBranch_IDEX, isR_IDEX, isMFPC_IDEX, isLW_IDEX, isSW_IDEX, isReadDigit_IDEX, isPrintDIgit_IDEX, ALUFunc_IDEX, R1Reg_IDEX, R2Reg_IDEX, immediate16_IDEX, R1AD_IDEX, R2AD_IDEX , jumpShortAddr_IDEX);
 	
-	-- Register File
+							--OUTPUT SIGNALS
+							
+							isEOR_IDEX, wasJumpOut_IDEX, isJump_IDEX, isJR_IDEX, isBranch_IDEX, isR_IDEX, isMFPC_IDEX, isLW_IDEX, isSW_IDEX, isReadDigit_IDEX, isPrintDIgit_IDEX, ALUFunc_IDEX, R1Reg_IDEX, R2Reg_IDEX, immediate16_IDEX, R1AD_IDEX, R2AD_IDEX , jumpShortAddr_IDEX);
 	
-	RegisterFile : REG_FILE port map(clock2,writeData_WB,writeAD_WB,R1AD,R2AD,R1Reg,R2Reg,outall);
 	
 	
-	-- Register EX_MEM
 	
-	EXMEMREG : REG_EX_MEM port map(clock,isLW_IDEX,isSW_IDEX,isReadDigit_IDEX,isPrintDIgit_IDEX,R2Reg_IDEX,ALUout,R2AD_IDEX, -- exmem inputs
-	isLW_EXMEM,DataWriteFlag,isReadDigit_EXMEM,PrintEnable,R2Reg_EXMEM,Result_EXMEM,RegAD_EXMEM); -- exmem outputs
+	
+	-- REGISTER EX_MEM
+
+			--TAKES INPUTS FROM ID_EX REGISTER, ALU RESULT AND 
+			--AND FORWARDS THESE SIGNALS TO THE OUTPUT ON THE RISING EDGE				
+			
+												--INPUTS
+	EXMEMREG : REG_EX_MEM port map(clock, isLW_IDEX, isSW_IDEX, isReadDigit_IDEX, isPrintDIgit_IDEX, R2Reg_IDEX, ALUout, R2AD_IDEX, 
+	
+												--OUTPUTS
+											 isLW_EXMEM, DataWriteFlag, isReadDigit_EXMEM, PrintEnable, R2Reg_EXMEM, Result_EXMEM, RegAD_EXMEM);
+	
+	
+	
+	-- MEM_WB MULTIPLEXER
+	
+		--USED TO SELECT THE MEMORY OUTPUT DATA 
+		--THESE DATA CAN COME FROM ALU RESULT (IN CASE OF R-TYPE INSTRUCTION)
+		-- OR THE KEY DATA OR FROM DATA GIVEN BY THE USER
+	
+        MUX2_1_MEM_WB: process(isLW_EXMEM, isReadDigit_EXMEM)
+        begin
+            if (isLW_EXMEM = '1') then
+                MEM_WB_Out <= fromData;
+            elsif (isReadDigit_EXMEM = '1') then
+                MEM_WB_Out <= keyData;
+            else
+                MEM_WB_Out <= Result_EXMEM;
+            end if;
+        end process;
+		  
+		  
+		  
+	-- REGISTER MEM_WB
+	
+			--TAKES THE MULTIPLEXERS OUTPUT DATA AND WRITES THEM TO THE 
+			--WRITE REGISTER OF THE REG_FILE AS SPECIFIED BY THE writeAD_WB ADDRESS
+		  
+	MEMWBREG : REG_MEM_WB port map (MEM_WB_Out, RegAD_EXMEM, clock, writeData_WB, writeAD_WB);	-- REG_MEM_WB register
+	
+	
+	
 	
 	-- CPU Outputs
 	-- printEnable , DataWriteFlag have been computed above (in EXMEM Register).
 		
-	DataAD <= R2Reg_EXMEM;
+	dataAD <= R2Reg_EXMEM;
 	toData <= result_EXMEM;
 	printData <= result_EXMEM;
 	keyEnable <= isReadDigit_EXMEM;
