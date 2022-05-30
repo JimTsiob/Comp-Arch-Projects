@@ -1,0 +1,131 @@
+
+----------------------------------------
+----------SUB EXAMPLE-------------------
+
+		
+
+Instr 1: 0001 - 101 - 000 - 000 - 000	(LW)	--FORTWNEI TIN TIMI TOU FROM_DATA STON REG 101.
+
+
+Instr 2: 0001 - 001 - 000 - 000 - 000	(LW)	--FORTWNEI TIN EPOMENI TIMI TOU FROM_DATA STON REG 001. 
+
+
+Instr 3: 0000 - 101 - 101 - 001 - 011 	(SUB ALU FUNCTION) -- KANEI TIN AFAIRESI TWN REG 101 KAI 001 KAI VAZEI TO RESULT STON 101. 
+
+
+Instr 4: 0010 - 101 - 000 - 000 - 000	(SW)	--APOTHIKEYEI TIN TIMI TOU 101 ME TO APOTELESMA STIN MNIMI KAI STIN EKSODO TO_DATA.
+
+
+------------------------------------------
+
+
+
+
+----------------------------------------
+----------ADD EXAMPLE-------------------
+
+
+Instr 1: 0001 - 101 - 000 - 000 - 000	(LW)	--FORTWNEI TIN TIMI TOU FROM_DATA STON REG 101.
+
+
+Instr 2: 0001 - 001 - 000 - 000 - 000	(LW)	--FORTWNEI TIN EPOMENI TIMI TOU FROM_DATA STON REG 001. 
+
+
+Instr 3: 0000 - 101 - 101 - 001 - 011 	(ADD ALU FUNCTION) -- KANEI TIN PROSTHESI TWN REG 101 KAI 001 KAI VAZEI TO RESULT STON 101. 
+
+
+Instr 4: 0010 - 101 - 000 - 000 - 000	(SW)	--APOTHIKEYEI TIN TIMI TOU 101 ME TO APOTELESMA STIN MNIMI KAI STIN EKSODO TO_DATA.
+
+
+
+------------------------------------------
+
+
+
+----------------------------------------
+----------OR EXAMPLE-------------------
+
+
+Instr 1: 0001 - 101 - 000 - 000 - 000	(LW)	-- FORTWNEI TIN TIMI TOU FROM_DATA STON REG 101.
+
+
+Instr 2: 0001 - 001 - 000 - 000 - 000	(LW)	-- FORTWNEI TIN EPOMENI TIMI TOU FROM_DATA STON REG 001. 
+
+
+Instr 3: 0000 - 101 - 101 - 001 - 001 	(OR ALU FUNCTION) -- EKTELEI TO LOGIKO OR (BIT-PER-BIT) TWN REG 101 KAI 001 KAI VAZEI TO RESULT STON 101. 
+
+
+Instr 4: 0010 - 101 - 000 - 000 - 000	(SW)	-- APOTHIKEYEI TIN TIMI TOU 101 ME TO APOTELESMA STIN MNIMI KAI STIN EKSODO TO_DATA.
+
+
+
+
+------------------------------------------
+
+
+
+----------------------------------------
+----------AND EXAMPLE-------------------
+
+
+Instr 1: 0001 - 101 - 000 - 000 - 000	(LW)	-- FORTWNEI TIN TIMI TOU FROM_DATA STON REG 101.
+
+
+Instr 2: 0001 - 001 - 000 - 000 - 000	(LW)	-- FORTWNEI TIN EPOMENI TIMI TOU FROM_DATA STON REG 001. 
+
+
+Instr 3: 0000 - 101 - 101 - 001 - 000 	(AND ALU FUNCTION) -- EKTELEI TO LOGIKO AND (BIT-PER-BIT) TWN REG 101 KAI 001 KAI VAZEI TO RESULT STON 101. 
+
+
+Instr 4: 0010 - 101 - 000 - 000 - 000	(SW)	-- APOTHIKEYEI TIN TIMI TOU 101 ME TO APOTELESMA STIN MNIMI KAI STIN EKSODO TO_DATA.
+
+
+
+
+
+------------------------------------------
+
+
+
+
+
+
+
+----------------------------------------
+----------GEQ EXAMPLE-------------------
+
+
+Instr 1: 0001 - 100 - 000 - 000 - 000 (LW)  -- FORTWNEI TIN TIMI TOU FROM_DATA STON REG 100.
+
+
+Instr 2: 0000 - 001 - 100 - 000 - 101 (GEQ ALU FUNCTION) -- EKTELEI TO GEQ TOU REG 100 KAI VAZEI TO RESULT STON 001. 
+
+
+Instr 3: 0010 - 001 - 000 - 000 - 000 (SW)	-- APOTHIKEYEI TIN TIMI TOU 001 POU KRATAEI TO APOTELESMA STIN MNIMI KAI STIN EKSODO TO_DATA.
+
+
+
+
+
+
+------------------------------------------
+
+
+
+----------------------------------------
+----------NOT EXAMPLE-------------------
+
+
+Instr 1: 0001 - 100 - 000 - 000 - 000 (LW)  -- FORTWNEI TIN TIMI TOU FROM_DATA STON REG 100.
+
+
+Instr 2: 0000 - 001 - 100 - 000 - 110 (NOT ALU FUNCTION) -- EKTELEI TO NOT TOU REG 100 KAI VAZEI TO RESULT STON 001. 
+
+
+Instr 3: 0010 - 001 - 000 - 000 - 000 (SW)	-- APOTHIKEYEI TIN TIMI TOU 001 POU KRATAEI TO APOTELESMA STIN MNIMI KAI STIN EKSODO TO_DATA.
+
+
+
+
+
+------------------------------------------
