@@ -1,0 +1,23 @@
+-- Dimitris Tsiompikas 3180223
+-- Antwnhs Detshs 3190054
+-- Petros Tsotsi 3180193
+
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
+
+
+ENTITY NOT1 IS 
+
+PORT ( A : IN STD_LOGIC;
+		 Q : OUT STD_LOGIC);
+		 
+END NOT1;
+
+
+ARCHITECTURE BEHAV OF NOT1 IS
+
+BEGIN 
+
+	Q <= NOT A;
+	
+END BEHAV;
