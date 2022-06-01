@@ -11,7 +11,7 @@ port(
 		opcode : in std_logic_vector(3 downto 0);
 		func : IN std_logic_vector(2 downto 0);
 		flush : in std_logic;
-		isMPFC,isJumpD,isReadDigit,isPrintDigit,isR,isLW,isSW,isBranch,isJR : out std_logic
+		isMFPC,isJumpD,isReadDigit,isPrintDigit,isR,isLW,isSW,isBranch,isJR : out std_logic
 );
 
 END CONTROL;
@@ -26,7 +26,7 @@ BEGIN
 		--AND WHEN FLUSH IS ENABLED
 		
 			isR <= '0';
-			isMPFC <= '0';
+			isMFPC <= '0';
 			isLW <= '0';
 			isSW <= '0';
 			isBranch <= '0';
@@ -41,7 +41,7 @@ BEGIN
 				when "0000" =>
 					isR <= '1';
 					if func = "111" then
-						isMPFC <= '1';
+						isMFPC <= '1';
 					end if;
 					
 					
